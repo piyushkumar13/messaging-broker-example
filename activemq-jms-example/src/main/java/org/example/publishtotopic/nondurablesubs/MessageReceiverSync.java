@@ -36,24 +36,25 @@ public class MessageReceiverSync {
         MessageConsumer consumer2 = session.createConsumer(topic);
 
 
-        Message receivedMsg1 = consumer1.receive();
+//        while (true) { // If we want to continuously receive message, uncomment this and comment out connection.close()
+            Message receivedMsg1 = consumer1.receive();
 
-        System.out.println("consumer1 : The received msg JMS type ::: " + receivedMsg1.getJMSType());
+            System.out.println("consumer1 : The received msg JMS type ::: " + receivedMsg1.getJMSType());
 
-        if (receivedMsg1 instanceof TextMessage) {
-            TextMessage textMessage = (TextMessage) receivedMsg1;
-            System.out.println("consumer1 : The text message is ::: " + textMessage.getText()); // If message is json sent by sender, then we will receive it as String, which we can deserialize to object.
-        }
+            if (receivedMsg1 instanceof TextMessage) {
+                TextMessage textMessage = (TextMessage) receivedMsg1;
+                System.out.println("consumer1 : The text message is ::: " + textMessage.getText()); // If message is json sent by sender, then we will receive it as String, which we can deserialize to object.
+            }
 
-        Message receivedMsg2 = consumer2.receive();
+            Message receivedMsg2 = consumer2.receive();
 
-        System.out.println("consumer2 : The received msg JMS type ::: " + receivedMsg2.getJMSType());
+            System.out.println("consumer2 : The received msg JMS type ::: " + receivedMsg2.getJMSType());
 
-        if (receivedMsg2 instanceof TextMessage) {
-            TextMessage textMessage = (TextMessage) receivedMsg2;
-            System.out.println("consumer2 : The text message is ::: " + textMessage.getText()); // If message is json sent by sender, then we will receive it as String, which we can deserialize to object.
-        }
-
-//        connection.close();
+            if (receivedMsg2 instanceof TextMessage) {
+                TextMessage textMessage = (TextMessage) receivedMsg2;
+                System.out.println("consumer2 : The text message is ::: " + textMessage.getText()); // If message is json sent by sender, then we will receive it as String, which we can deserialize to object.
+            }
+//        }
+        connection.close();
     }
 }

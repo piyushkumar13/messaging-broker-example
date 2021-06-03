@@ -35,7 +35,7 @@ public class MessageReceiverSync {
         MessageConsumer consumer1 = session.createDurableSubscriber(topic, "consumer1");
         MessageConsumer consumer2 = session.createDurableSubscriber(topic, "consumer2");
 
-//        while (true) {
+//        while (true) { // If we want to continuously receive message, uncomment this and comment out connection.close()
             Message receivedMsg1 = consumer1.receive();
 
             System.out.println("The received msg JMS type ::: " + receivedMsg1.getJMSType());
@@ -55,6 +55,6 @@ public class MessageReceiverSync {
             }
 //        }
 
-//        connection.close();
+        connection.close();
     }
 }

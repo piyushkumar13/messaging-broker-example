@@ -28,7 +28,7 @@ public class MessageSender {
 
     private static TextMessage getJsonMsgAsText(Session session) throws JsonProcessingException, JMSException {
 
-        String jsonMsg = new ObjectMapper().writeValueAsString(new Student(1, "Piyush", "Java"));
+        String jsonMsg = new ObjectMapper().writeValueAsString(new Student(3, "Piyush", "Java"));
         return session.createTextMessage(jsonMsg);
     }
 
