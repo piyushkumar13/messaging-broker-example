@@ -2,4 +2,5 @@ spring:
   activemq:
     broker-url: tcp://localhost:61616
     in-memory: false
-
+  jms:
+    pubSubDomain: true # We can also set this property programmatically using DefaultJmsListenerContainerFactory.setPubSubDomain() used by consumer and jmsTemplate.setPubSubDomain() used by producer.
