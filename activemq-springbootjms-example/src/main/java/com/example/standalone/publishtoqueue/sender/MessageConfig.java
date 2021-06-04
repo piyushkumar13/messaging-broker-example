@@ -1,4 +1,4 @@
-package com.example.standalone.publishtoqueue;
+package com.example.standalone.publishtoqueue.sender;
 
 import javax.jms.Queue;
 import org.apache.activemq.command.ActiveMQQueue;

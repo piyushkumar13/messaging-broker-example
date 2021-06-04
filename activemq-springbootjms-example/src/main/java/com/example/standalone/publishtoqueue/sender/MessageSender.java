@@ -1,4 +1,4 @@
-package com.example.standalone.publishtoqueue;
+package com.example.standalone.publishtoqueue.sender;
 
 import com.example.standalone.domain.Student;
 import java.util.UUID;
@@ -41,6 +41,8 @@ public class MessageSender {
         UUID uuid = UUID.randomUUID();
         System.out.println("ID is ::: " + uuid);
 
+        Student student = new Student(uuid.toString(), "Piyush", "Computer Science");
+
         MappingJackson2MessageConverter messageConverter = new MappingJackson2MessageConverter();
         messageConverter.setTargetType(MessageType.TEXT);
         messageConverter.setTypeIdPropertyName("_type");
@@ -48,9 +50,9 @@ public class MessageSender {
         /* Just for the sake of having separate method for json, I have set the json message converter here.
         However, better way is to create a bean of message converter in configuration. Please check commented section in MessageConfig class. */
         jmsTemplate.setMessageConverter(messageConverter);
-        jmsTemplate.convertAndSend(queue, new Student(uuid.toString(), "Piyush", "Computer Science"));
+        jmsTemplate.convertAndSend(queue, student);
 
-        System.out.println("Message sent as JSON");
+        System.out.println("Message sent as JSON for object ::: " + student);
 
     }
 }
