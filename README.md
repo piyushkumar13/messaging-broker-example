@@ -11,4 +11,4 @@ This module comprises of a example which makes use of activemq as a messaging br
 Before using it you need to install and start activemq on your local. You can follow [this](https://medium.com/@gauravingalkar/getting-started-with-activemq-installing-and-getting-web-console-running-e9aca136a60e ) guide to do that. 
 
 # activemq-springbootjms-example
-This module contains example of activemq with JMS and Spring boot.
+This module contains example of activemq with JMS and Spring boot. Activemq is used in standalone mode as well as in embedded mode(activemq comes with spring boot library in embedded form).
