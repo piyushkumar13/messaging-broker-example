@@ -42,7 +42,8 @@ public class MessageSender {
         try (Connection connection = connectionFactory.newConnection();
              Channel channel = connection.createChannel()){
 
-            channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+            /* Also, making exchange durable which will be there even after rabbitmq broker restarts. */
+            channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC, true);
 
 //            String msg = getTextMessage();
             String msg = getJsonMsgAsText();

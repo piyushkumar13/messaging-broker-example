@@ -28,10 +28,11 @@ public class MessageReceiver {
         Connection connection = connectionFactory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+        /* Also, making exchange durable which will be there even after rabbitmq broker restarts. */
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC, true);
 
 //        String queueName = channel.queueDeclare().getQueue();
-        String queueName = channel.queueDeclare("myqueue", true, false, false, null).getQueue(); // better to give name to the queue, else default name will be given to the binded queue and you will not be able to see messages in it on the rabbitmq UI.
+        String queueName = channel.queueDeclare("myqueue", true, false, false, null).getQueue(); // better to give name to the queue, else default name will be given to the binded queue and you will not be able to see messages in it on the rabbitmq UI. And also, queue is durable.
 
         /* Same queue with multiple binding keys(i.e routing keys)*/
         channel.queueBind(queueName, EXCHANGE_NAME, BINDING_KEY_1);

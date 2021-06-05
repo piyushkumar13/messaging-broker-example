@@ -28,14 +28,15 @@ public class MessageReceiverWithMultipleQueues {
         Connection connection = connectionFactory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+        /* Also, making exchange durable which will be there even after rabbitmq broker restarts. */
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC, true);
 
 //        String queueName = channel.queueDeclare().getQueue();
         /* Each queue with one binding key. However, we can associate multiple keys with each queues. */
-        String queueName1 = channel.queueDeclare("myqueue1", true, false, false, null).getQueue(); // better to give name to the queue, else default name will be given to the binded queue and you will not be able to see messages in it on the rabbitmq UI.
+        String queueName1 = channel.queueDeclare("myqueue1", true, false, false, null).getQueue(); // better to give name to the queue, else default name will be given to the binded queue and you will not be able to see messages in it on the rabbitmq UI. And also, queue is durable.
         channel.queueBind(queueName1, EXCHANGE_NAME, BINDING_KEY_1);
 
-        String queueName2 = channel.queueDeclare("myqueue2", true, false, false, null).getQueue(); // better to give name to the queue, else default name will be given to the binded queue and you will not be able to see messages in it on the rabbitmq UI.
+        String queueName2 = channel.queueDeclare("myqueue2", true, false, false, null).getQueue(); // better to give name to the queue, else default name will be given to the binded queue and you will not be able to see messages in it on the rabbitmq UI. And also, queue is durable.
         channel.queueBind(queueName2, EXCHANGE_NAME, BINDING_KEY_2);
         DeliverCallback deliverCallback = (consumerTag, message) -> {
 
