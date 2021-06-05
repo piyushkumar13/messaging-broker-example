@@ -32,6 +32,13 @@
             <artifactId>spring-boot-starter-activemq</artifactId>
         </dependency>
 
+<!--        &lt;!&ndash; Add this dependency when using active mq in embedded mode &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.activemq</groupId>-->
+<!--            <artifactId>activemq-broker</artifactId>-->
+<!--        </dependency>-->
+
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -41,23 +48,23 @@
     </dependencies>
 
 
-    <build>
-        <plugins>
+<!--    <build>-->
+<!--        <plugins>-->
 
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <excludes>-->
+<!--                        <exclude>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                        </exclude>-->
+<!--                    </excludes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
-        </plugins>
-    </build>
+<!--        </plugins>-->
+<!--    </build>-->
 
 </project>

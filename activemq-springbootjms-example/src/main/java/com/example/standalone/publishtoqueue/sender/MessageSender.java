@@ -1,6 +1,6 @@
 package com.example.standalone.publishtoqueue.sender;
 
-import com.example.standalone.domain.Student;
+import com.example.domain.Student;
 import java.util.UUID;
 import javax.jms.Queue;
 import org.springframework.beans.factory.annotation.Autowired;

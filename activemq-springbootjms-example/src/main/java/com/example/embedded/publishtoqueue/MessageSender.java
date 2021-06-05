@@ -1,8 +1,8 @@
-package com.example.standalone.publishtotopic.sender;
+package com.example.embedded.publishtoqueue;
 
 import com.example.domain.Student;
 import java.util.UUID;
-import javax.jms.Topic;
+import javax.jms.Queue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class MessageSender {
 
     @Autowired
-    private Topic topic;
+    private Queue queue;
 
     @Autowired
     private JmsTemplate jmsTemplate;
@@ -30,7 +30,7 @@ public class MessageSender {
         System.out.println("ID is ::: " + uuid);
 
         String msg = "Simple text message with id ::: " + uuid;
-        jmsTemplate.convertAndSend(topic, msg);
+        jmsTemplate.convertAndSend(queue, msg);
 
         System.out.println("Message sent ::: " + msg);
     }
@@ -50,7 +50,7 @@ public class MessageSender {
         /* Just for the sake of having separate method for json, I have set the json message converter here.
         However, better way is to create a bean of message converter in configuration. Please check commented section in MessageConfig class. */
         jmsTemplate.setMessageConverter(messageConverter);
-        jmsTemplate.convertAndSend(topic, student);
+        jmsTemplate.convertAndSend(queue, student);
 
         System.out.println("Message sent as JSON for object ::: " + student);
 
