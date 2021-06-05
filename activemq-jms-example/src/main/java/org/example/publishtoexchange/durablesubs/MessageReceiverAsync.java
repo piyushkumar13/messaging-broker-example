@@ -1,4 +1,4 @@
-package org.example.publishtotopic.nondurablesubs;
+package org.example.publishtoexchange.durablesubs;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -6,7 +6,6 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
-import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
@@ -28,13 +27,13 @@ public class MessageReceiverAsync {
 
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(BROKER_URL);
         Connection connection = connectionFactory.createConnection();
-//        connection.setClientID("12345");
+        connection.setClientID("123456");
         connection.start();
 
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         Topic topic = session.createTopic(TOPIC_NAME);
-        MessageConsumer consumer1 = session.createConsumer(topic);
-        MessageConsumer consumer2 = session.createConsumer(topic);
+        MessageConsumer consumer1 = session.createDurableSubscriber(topic, "consumer1");
+        MessageConsumer consumer2 = session.createDurableSubscriber(topic, "consumer2");
 
         consumer1.setMessageListener(new MessageListener() {
             @SneakyThrows

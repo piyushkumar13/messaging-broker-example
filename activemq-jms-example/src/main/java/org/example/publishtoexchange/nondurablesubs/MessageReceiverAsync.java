@@ -1,4 +1,4 @@
-package org.example.publishtotopic.durablesubs;
+package org.example.publishtoexchange.nondurablesubs;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -27,13 +27,13 @@ public class MessageReceiverAsync {
 
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(BROKER_URL);
         Connection connection = connectionFactory.createConnection();
-        connection.setClientID("123456");
+//        connection.setClientID("12345");
         connection.start();
 
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         Topic topic = session.createTopic(TOPIC_NAME);
-        MessageConsumer consumer1 = session.createDurableSubscriber(topic, "consumer1");
-        MessageConsumer consumer2 = session.createDurableSubscriber(topic, "consumer2");
+        MessageConsumer consumer1 = session.createConsumer(topic);
+        MessageConsumer consumer2 = session.createConsumer(topic);
 
         consumer1.setMessageListener(new MessageListener() {
             @SneakyThrows

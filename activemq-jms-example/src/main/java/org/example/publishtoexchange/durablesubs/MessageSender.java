@@ -1,4 +1,4 @@
-package org.example.publishtotopic.nondurablesubs;
+package org.example.publishtoexchange.durablesubs;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,6 @@ import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
-import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
@@ -29,7 +28,7 @@ public class MessageSender {
 
     private static TextMessage getJsonMsgAsText(Session session) throws JsonProcessingException, JMSException {
 
-        String jsonMsg = new ObjectMapper().writeValueAsString(new Student(1, "Piyush", "Java"));
+        String jsonMsg = new ObjectMapper().writeValueAsString(new Student(18, "Piyush", "Java"));
         return session.createTextMessage(jsonMsg);
     }
 

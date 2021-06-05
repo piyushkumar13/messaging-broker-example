@@ -12,6 +12,7 @@
     <modules>
         <module>activemq-jms-example</module>
         <module>activemq-springbootjms-example</module>
+        <module>rabbitmq-example</module>
     </modules>
 
     <name>messaging-broker-example</name>
@@ -48,6 +49,12 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.20</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.rabbitmq</groupId>
+                <artifactId>amqp-client</artifactId>
+                <version>5.12.0</version>
             </dependency>
 
         </dependencies>
