@@ -13,6 +13,7 @@
         <module>activemq-jms-example</module>
         <module>activemq-springbootjms-example</module>
         <module>rabbitmq-example</module>
+        <module>rabbitmq-springboot-example</module>
     </modules>
 
     <name>messaging-broker-example</name>

@@ -10,6 +10,8 @@ This project comprises of module :
 
 1. activemq-jms-example
 2. activemq-springbootjms-example
+3. rabbitmq-example
+4. rabbitmq-springboot-example
 
 ## activemq-jms-example
 * This module comprises of a example which makes use of activemq as a messaging broker with plain java.
@@ -29,3 +31,7 @@ This project comprises of module :
 * It contains examples of publishing messages to queue directly.
 * It contains examples of publishing messages to exchanges like fanout, topic and direct.
 
+# rabbitmq-springboot-example
+* This module contains example of rabbitmq with spring-boot.
+* It contains examples of publishing messages to queue directly.
+* It contains examples of publishing messages to exchanges like fanout, topic and direct.
