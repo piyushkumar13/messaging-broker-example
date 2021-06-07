@@ -1,4 +1,4 @@
-package com.example.rabbitmqspringbootexample.topic.receiver;
+package com.example.rabbitmqspringbootexample.fanout.receiver;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -16,7 +16,9 @@ import org.springframework.context.annotation.Configuration;
     therefore, I have added separate MessageConfig for MessageSender and  MessageReciever. */
 @Configuration
 public class MessageConfig {
-    private static final String QUEUE_NAME = "myboot_queue";
+    public static final String QUEUE_NAME_1 = "myboot_fanout_queue1";
+    public static final String QUEUE_NAME_2 = "myboot_fanout_queue2";
+    public static final String QUEUE_NAME_3 = "myboot_fanout_queue3";
 
     @Bean
     public MessageConverter jsonMessageConverter() {

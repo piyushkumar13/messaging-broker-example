@@ -1,10 +1,11 @@
-package com.example.rabbitmqspringbootexample.topic.sender;
+package com.example.rabbitmqspringbootexample.direct.sender;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -21,24 +22,45 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MessageConfig {
 
-    public static final String EXCHANGE_NAME = "myboot_topic_exchange";
+    public static final String EXCHANGE_NAME = "myboot_direct_exchange";
 
-    private static final String QUEUE_NAME = "myboot_queue";
-    private static final String BINDING_KEY = "*.example";
+    private static final String QUEUE_NAME_1 = "myboot_direct_queue1";
+    private static final String QUEUE_NAME_2 = "myboot_direct_queue2";
+    private static final String QUEUE_NAME_3 = "myboot_direct_queue3";
 
     @Bean
-    public Queue queue() {
-        return new Queue(QUEUE_NAME);
+    public Queue queue1() {
+        return new Queue(QUEUE_NAME_1);
     }
 
     @Bean
-    public TopicExchange exchange() {
-        return new TopicExchange(EXCHANGE_NAME);
+    public Queue queue2() {
+        return new Queue(QUEUE_NAME_2);
     }
 
     @Bean
-    public Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(BINDING_KEY);
+    public Queue queue3() {
+        return new Queue(QUEUE_NAME_3);
+    }
+
+    @Bean
+    public DirectExchange exchange() {
+        return new DirectExchange(EXCHANGE_NAME);
+    }
+
+    @Bean
+    public Binding bindingQueue1(Queue queue1, DirectExchange exchange) {
+        return BindingBuilder.bind(queue1).to(exchange).with("myboot.direct.queue.1");
+    }
+
+    @Bean
+    public Binding bindingQueue2(Queue queue2, DirectExchange exchange) {
+        return BindingBuilder.bind(queue2).to(exchange).with("myboot.direct.queue.2");
+    }
+
+    @Bean
+    public Binding bindingQueue3(Queue queue3, DirectExchange exchange) {
+        return BindingBuilder.bind(queue3).to(exchange).with("myboot.direct.queue.3");
     }
 
     @Bean
@@ -53,5 +75,4 @@ public class MessageConfig {
         rabbitTemplate.setMessageConverter(jsonMessageConverter());
         return rabbitTemplate;
     }
-
 }
