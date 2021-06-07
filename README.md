@@ -34,4 +34,4 @@ This project comprises of module :
 # rabbitmq-springboot-example
 * This module contains example of rabbitmq with spring-boot.
 * It contains examples of publishing messages to queue directly.
-* It contains examples of publishing messages to exchanges like fanout, topic and direct.
+* It contains examples of publishing messages to exchanges like fanout, topic, headers and direct.
