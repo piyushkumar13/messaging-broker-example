@@ -35,3 +35,4 @@ This project comprises of module :
 * This module contains example of rabbitmq with spring-boot.
 * It contains examples of publishing messages to queue directly.
 * It contains examples of publishing messages to exchanges like fanout, topic, headers and direct.
+* It contains example of dead letter queue.
